@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-deep:    #100804;
+  --color-bg-dark:    #1C0F07;
+  --color-bg-mid:     #2A1608;
+  --color-bg-warm:    #3D1F0A;
+  --color-gold:       #D4A853;
+  --color-gold-lt:    #E8C97A;
+  --color-gold-dk:    #A8832F;
+  --color-red-vn:     #8B1A1A;
+  --color-cream:      #F5ECD7;
+  --color-cream-dim:  #C9B89A;
+  --color-cream-dark: #8A7560;
+
+  --font-display: 'Playfair Display', serif;
+  --font-body:    'EB Garamond', serif;
+  --font-accent:  'Cormorant Garamond', serif;
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    #2A1608 0%,
+    #3D1F0A 40%,
+    #5C3015 50%,
+    #3D1F0A 60%,
+    #2A1608 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: #100804;
+    color: #F5ECD7;
+    font-family: 'EB Garamond', serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    margin: 0;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  img { display: block; max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+  button { cursor: pointer; border: none; background: none; font-family: inherit; }
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: #100804; }
+  ::-webkit-scrollbar-thumb { background: #A8832F; border-radius: 3px; }
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.22;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)' opacity='0.08'/%3E%3C/svg%3E");
+}
+
+#root { min-height: 100vh; }
