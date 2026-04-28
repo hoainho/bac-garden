@@ -32,12 +32,7 @@ export default function Story() {
               alt="Mâm cơm Bắc Garden"
               className="absolute top-0 left-0 w-3/4 h-[80%] rounded-sm brightness-90"
             />
-            <OptimizedImage
-              imgPath="/images/BG 66427s.jpg"
-              size="card"
-              alt="Lợn cắp nách"
-              className="absolute bottom-0 right-0 w-[55%] h-[55%] rounded-sm brightness-85 border-4 border-bg-dark"
-            />
+
             <div
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-bg-dark border border-gold px-7 py-5 text-center z-10"
             >
