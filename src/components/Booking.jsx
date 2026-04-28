@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
+import { sendBookingToZalo } from '../utils/zalo'
 
 function Reveal({ children, delay = 0, className = '' }) {
   const [ref, visible] = useScrollReveal()
@@ -41,21 +42,32 @@ export default function Booking() {
     setTimeout(() => setToast(''), 5000)
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
     if (!form.name || !form.phone || !form.date || !form.time || !form.guests) {
       showToast('⚠️ Vui lòng điền đầy đủ thông tin bắt buộc.')
       return
     }
     setStatus('loading')
+    try {
+      await sendBookingToZalo({
+        name: form.name,
+        phone: form.phone,
+        date: form.date,
+        time: form.time,
+        guests: form.guests,
+        seat: form.seat,
+        note: form.note,
+      })
+    } catch (err) {
+      console.error('[Booking] Zalo notify failed:', err)
+    }
+    setStatus('done')
+    showToast(`🏮 Cảm ơn ${form.name}! Chúng tôi sẽ gọi xác nhận sớm nhất.`)
     setTimeout(() => {
-      setStatus('done')
-      showToast(`🏮 Cảm ơn ${form.name}! Chúng tôi sẽ gọi xác nhận sớm nhất.`)
-      setTimeout(() => {
-        setForm(f => ({ ...f, name:'', phone:'', date:'', time:'', guests:'', seat:'', note:'' }))
-        setStatus('idle')
-      }, 3000)
-    }, 1200)
+      setForm(f => ({ ...f, name:'', phone:'', date:'', time:'', guests:'', seat:'', note:'' }))
+      setStatus('idle')
+    }, 3000)
   }
 
   const inputCls = 'w-full bg-white/4 border border-gold/20 rounded-sm px-4 py-3 text-cream placeholder-cream-dark/70 text-base italic transition-all duration-250 focus:outline-none focus:border-gold focus:bg-gold/6'
