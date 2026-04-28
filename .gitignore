@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+# Original large JPEGs (use optimized WebP instead)
+public/images/*.jpg
+public/images/*.jpeg
+public/images/*.png
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
