@@ -6,12 +6,9 @@ import { useState, useRef, useEffect } from 'react'
  * eager:   true = no lazy load (above-the-fold only)
  *
  * The component renders:
- *   <div ref className={className}>          ← caller controls position/size
- *     <div skeleton />                        ← absolute inset-0, shimmer
- *     <picture>
- *       <source webp />
- *       <img absolute inset-0 />             ← fills picture exactly
- *     </picture>
+ *   <div ref className={className}>   ← caller controls position/size
+ *     <div skeleton-shimmer />         ← absolute inset-0, fades out on load
+ *     <img src={webpSrc} />           ← absolute inset-0, fades in on load
  *   </div>
  */
 export default function OptimizedImage({
@@ -57,17 +54,14 @@ export default function OptimizedImage({
       />
 
       {shouldLoad && (
-        <picture>
-          <source srcSet={webpSrc} type="image/webp" />
-          <img
-            src={imgPath}
-            alt={alt}
-            loading={eager ? 'eager' : 'lazy'}
-            decoding="async"
-            onLoad={() => setLoaded(true)}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${loaded ? 'opacity-100' : 'opacity-0'}`}
-          />
-        </picture>
+        <img
+          src={webpSrc}
+          alt={alt}
+          loading={eager ? 'eager' : 'lazy'}
+          decoding="async"
+          onLoad={() => setLoaded(true)}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${loaded ? 'opacity-100' : 'opacity-0'}`}
+        />
       )}
     </div>
   )
