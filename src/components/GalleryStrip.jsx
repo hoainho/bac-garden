@@ -11,7 +11,7 @@ const photos = [
 
 export default function GalleryStrip() {
   return (
-    <div id="gallery" className="grid grid-cols-3 md:grid-cols-6 h-[220px] md:h-[280px] overflow-hidden">
+    <div id="gallery" className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 h-[280px] sm:h-[220px] md:h-[280px] overflow-hidden">
       {photos.map((src, i) => (
         <div key={i} className="overflow-hidden relative group">
           <OptimizedImage

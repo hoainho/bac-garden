@@ -22,13 +22,13 @@ export default function DishPopup({ dish, onClose }) {
 
   return (
     <div
-      className={`fixed inset-0 z-[8000] flex items-center justify-center p-6 transition-opacity duration-350 ${dish ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+      className={`fixed inset-0 z-[8000] flex items-end sm:items-center justify-center p-0 sm:p-6 transition-opacity duration-350 ${dish ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
       onClick={onClose}
     >
       <div className="absolute inset-0 bg-bg-deep/88 backdrop-blur-md" />
 
       <div
-        className="relative z-10 bg-bg-dark border border-gold/30 max-w-[760px] w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden rounded-sm shadow-[0_32px_80px_rgba(0,0,0,0.7)] transition-all duration-400 scale-100"
+        className="relative z-10 bg-bg-dark border border-gold/30 max-w-[760px] w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden overflow-y-auto rounded-t-xl sm:rounded-sm shadow-[0_32px_80px_rgba(0,0,0,0.7)] transition-all duration-400 scale-100 max-h-[92vh] md:max-h-none"
         onClick={e => e.stopPropagation()}
         style={{ animation: 'popupIn 0.4s cubic-bezier(0.16,1,0.3,1)' }}
       >
@@ -37,10 +37,10 @@ export default function DishPopup({ dish, onClose }) {
           size="card"
           alt={dish.name}
           eager
-          className="w-full h-[280px] md:min-h-[420px]"
+          className="w-full h-[200px] sm:h-[260px] md:min-h-[420px] flex-shrink-0"
         />
 
-        <div className="p-10 md:p-12 flex flex-col justify-center gap-4">
+        <div className="p-5 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-center gap-3 sm:gap-4">
           {dish.tag && (
             <span
               style={{ fontFamily: 'var(--font-body)' }}
@@ -51,27 +51,27 @@ export default function DishPopup({ dish, onClose }) {
           )}
           <h3
             style={{ fontFamily: 'var(--font-display)' }}
-            className="text-[30px] font-bold text-cream leading-[1.2]"
+            className="text-[clamp(22px,4vw,30px)] font-bold text-cream leading-[1.2]"
           >
             {dish.name}
           </h3>
           <p
             style={{ fontFamily: 'var(--font-body)' }}
-            className="text-[16px] italic text-cream-dim leading-[1.8]"
+            className="text-[14px] sm:text-[16px] italic text-cream-dim leading-[1.8]"
           >
             {dish.desc}
           </p>
           <div className="w-14 h-px bg-gold" />
           <p
             style={{ fontFamily: 'var(--font-display)' }}
-            className="text-[32px] font-black text-gold"
+            className="text-[clamp(22px,4vw,32px)] font-black text-gold"
           >
             {dish.price}
           </p>
           <button
             onClick={() => { onClose(); scrollTo('#booking') }}
             style={{ fontFamily: 'var(--font-display)' }}
-            className="mt-2 py-3 px-8 bg-gold text-bg-deep text-[14px] font-bold tracking-widest uppercase hover:bg-gold-lt transition-colors duration-250 text-center rounded-sm"
+            className="btn-cta mt-1 sm:mt-2 py-3 px-6 sm:px-8 bg-gold text-bg-deep text-[13px] sm:text-[14px] font-bold tracking-widest uppercase hover:bg-gold-lt transition-colors duration-250 text-center rounded-sm"
           >
             Đặt bàn để thưởng thức
           </button>

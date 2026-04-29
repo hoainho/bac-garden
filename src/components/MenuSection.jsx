@@ -30,15 +30,15 @@ function GoldDivider() {
 
 function GroupHeader({ label, title, desc }) {
   return (
-    <Reveal className="text-center mb-12">
+    <Reveal className="text-center mb-8 sm:mb-12">
       <p style={{ fontFamily: 'var(--font-body)' }} className="text-[12px] italic text-gold tracking-[4px] uppercase mb-2.5">
         {label}
       </p>
-      <h3 style={{ fontFamily: 'var(--font-display)' }} className="text-[clamp(26px,3vw,40px)] font-bold text-cream mb-2">
+      <h3 style={{ fontFamily: 'var(--font-display)' }} className="text-[clamp(22px,4vw,40px)] font-bold text-cream mb-2">
         {title}
       </h3>
       {desc && (
-        <p style={{ fontFamily: 'var(--font-accent)' }} className="text-[17px] italic text-cream-dim">
+        <p style={{ fontFamily: 'var(--font-accent)' }} className="text-[15px] sm:text-[17px] italic text-cream-dim">
           {desc}
         </p>
       )}
@@ -50,9 +50,9 @@ function GroupHeader({ label, title, desc }) {
 function BreakfastLayout({ dishes, onOpen }) {
   const [featured, ...rest] = dishes
   return (
-    <div className="grid grid-cols-1 md:grid-cols-[1.6fr_1fr] gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-[1.6fr_1fr] gap-3 sm:gap-4">
       <DishCard dish={featured} onOpen={onOpen} size="featured" />
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-3 sm:gap-4">
         {rest.map(d => <DishCard key={d.id} dish={d} onOpen={onOpen} size="small" />)}
       </div>
     </div>
@@ -61,8 +61,8 @@ function BreakfastLayout({ dishes, onOpen }) {
 
 function Grid4Layout({ dishes, onOpen }) {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-      {dishes.map((d, i) => (
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+      {dishes.map((d) => (
         <div key={d.id} className={d.hero ? 'col-span-2 row-span-1' : ''}>
           <DishCard dish={d} onOpen={onOpen} size={d.hero ? 'small' : 'grid'} />
         </div>
@@ -73,7 +73,7 @@ function Grid4Layout({ dishes, onOpen }) {
 
 function Grid3Layout({ dishes, onOpen }) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
       {dishes.map(d => <DishCard key={d.id} dish={d} onOpen={onOpen} size="grid" />)}
     </div>
   )
@@ -82,7 +82,7 @@ function Grid3Layout({ dishes, onOpen }) {
 function SignatureLayout({ dishes, onOpen }) {
   return (
     <>
-      <div className="flex items-center justify-center mb-8">
+      <div className="flex items-center justify-center mb-6 sm:mb-8">
         <span
           style={{ fontFamily: 'var(--font-display)', background: 'linear-gradient(135deg, #A8832F, #D4A853)' }}
           className="inline-block text-bg-deep text-[11px] font-bold tracking-[4px] uppercase px-5 py-1.5"
@@ -90,7 +90,7 @@ function SignatureLayout({ dishes, onOpen }) {
           ✦ Tinh hoa đặc sản ✦
         </span>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
         {dishes.map(d => <DishCard key={d.id} dish={d} onOpen={onOpen} size="hero_sq" />)}
       </div>
     </>
@@ -101,7 +101,7 @@ function HeroLayout({ dishes, onOpen }) {
   const d = dishes[0]
   return (
     <div
-      className="relative h-[500px] md:h-[560px] overflow-hidden rounded-sm cursor-pointer group"
+      className="relative h-[380px] sm:h-[500px] md:h-[560px] overflow-hidden rounded-sm cursor-pointer group"
       onClick={() => onOpen(d)}
     >
       <OptimizedImage
@@ -111,10 +111,10 @@ function HeroLayout({ dishes, onOpen }) {
         className="absolute inset-0 w-full h-full transition-transform duration-[8000ms] group-hover:scale-[1.04]"
       />
       <div className="absolute inset-0 bg-gradient-to-br from-bg-deep/75 via-bg-deep/30 to-bg-deep/60" />
-      <div className="absolute inset-0 flex flex-col items-center justify-center gap-5 px-10 text-center">
+      <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 sm:gap-5 px-6 sm:px-10 text-center">
         <h4
           style={{ fontFamily: 'var(--font-display)' }}
-          className="text-[clamp(32px,5vw,68px)] font-black text-white leading-[1.1] drop-shadow-[0_4px_24px_rgba(0,0,0,0.6)]"
+          className="text-[clamp(28px,6vw,68px)] font-black text-white leading-[1.1] drop-shadow-[0_4px_24px_rgba(0,0,0,0.6)]"
         >
           {d.name}
         </h4>
@@ -126,14 +126,14 @@ function HeroLayout({ dishes, onOpen }) {
         </p>
         <span
           style={{ fontFamily: 'var(--font-display)' }}
-          className="text-[32px] font-black text-gold bg-bg-deep/60 px-8 py-2.5 border border-gold/40"
+          className="text-[clamp(22px,5vw,32px)] font-black text-gold bg-bg-deep/60 px-6 sm:px-8 py-2 sm:py-2.5 border border-gold/40"
         >
           {d.price}
         </span>
         <button
           onClick={e => { e.stopPropagation(); document.querySelector('#booking')?.scrollIntoView({ behavior: 'smooth', block: 'start' }) }}
           style={{ fontFamily: 'var(--font-display)' }}
-          className="mt-2 inline-block px-10 py-3.5 bg-gold text-bg-deep text-[14px] font-bold tracking-widest uppercase hover:bg-gold-lt transition-colors duration-250 rounded-sm"
+          className="btn-cta mt-1 sm:mt-2 inline-block px-7 sm:px-10 py-3 sm:py-3.5 bg-gold text-bg-deep text-[13px] sm:text-[14px] font-bold tracking-widest uppercase hover:bg-gold-lt transition-colors duration-250 rounded-sm"
         >
           Đặt bàn để thưởng thức
         </button>
@@ -154,10 +154,13 @@ export default function MenuSection() {
   const [activeGroup, setActiveGroup] = useState(MENU_GROUPS[0].id)
   const [popup, setPopup] = useState(null)
   const groupRefs = useRef({})
+  const tabBarRef  = useRef(null)
+  const isScrollingRef = useRef(false)
 
   useEffect(() => {
     const obs = new IntersectionObserver(
       entries => {
+        if (isScrollingRef.current) return
         entries.forEach(e => {
           if (e.isIntersecting) setActiveGroup(e.target.dataset.group)
         })
@@ -174,7 +177,26 @@ export default function MenuSection() {
   function scrollToGroup(id) {
     const el = groupRefs.current[id]
     if (!el) return
-    window.scrollTo({ top: el.offsetTop - 130, behavior: 'smooth' })
+
+    const navbarHeight  = 72
+    const tabBarHeight  = tabBarRef.current?.getBoundingClientRect().height ?? 52
+    const totalOffset   = navbarHeight + tabBarHeight + 8
+
+    const elTop = el.getBoundingClientRect().top + window.scrollY
+    const target = elTop - totalOffset
+
+    isScrollingRef.current = true
+    setActiveGroup(id)
+
+    window.scrollTo({ top: target, behavior: 'smooth' })
+
+    const onScrollEnd = () => {
+      isScrollingRef.current = false
+      window.removeEventListener('scrollend', onScrollEnd)
+    }
+    window.addEventListener('scrollend', onScrollEnd, { once: true })
+
+    setTimeout(() => { isScrollingRef.current = false }, 1200)
   }
 
   return (
@@ -184,7 +206,7 @@ export default function MenuSection() {
           style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(61,31,10,0.35) 0%, transparent 55%)' }}
         />
 
-        <div className="max-w-[1200px] mx-auto px-8 pt-[100px] pb-16 text-center">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-8 pt-16 sm:pt-[100px] pb-12 sm:pb-16 text-center">
           <Reveal>
             <p style={{ fontFamily: 'var(--font-body)' }} className="text-[12px] italic text-gold tracking-[4px] uppercase mb-4">
               Thực đơn
@@ -212,15 +234,18 @@ export default function MenuSection() {
           </Reveal>
         </div>
 
-        <div className="sticky top-[72px] z-[500] bg-bg-dark/96 backdrop-blur-md border-b border-gold/20" style={{ background: 'rgba(28,15,7,0.96)' }}>
-          <div className="max-w-[1200px] mx-auto px-4 flex overflow-x-auto scrollbar-none">
+        <div ref={tabBarRef} className="sticky top-[72px] z-[500] bg-bg-dark/96 backdrop-blur-md border-b border-gold/20" style={{ background: 'rgba(28,15,7,0.96)' }}>
+          <div
+            className="no-scrollbar max-w-[1200px] mx-auto px-4 flex overflow-x-auto"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
             {MENU_GROUPS.map(g => (
               <button
                 key={g.id}
                 onClick={() => scrollToGroup(g.id)}
                 style={{ fontFamily: 'var(--font-body)' }}
                 className={[
-                  'flex-shrink-0 px-6 py-4 text-[13px] tracking-[2px] uppercase border-b-2 transition-all duration-250 whitespace-nowrap',
+                  'flex-shrink-0 px-5 sm:px-6 py-3.5 sm:py-4 text-[12px] sm:text-[13px] tracking-[2px] uppercase border-b-2 transition-all duration-250 whitespace-nowrap',
                   activeGroup === g.id
                     ? 'text-gold border-gold'
                     : 'text-cream-dim border-transparent hover:text-gold',
@@ -232,7 +257,7 @@ export default function MenuSection() {
           </div>
         </div>
 
-        <div className="max-w-[1200px] mx-auto px-8 pb-[100px]">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-8 pb-16 sm:pb-[100px]">
           {MENU_GROUPS.map((group, gi) => {
             const Layout = LAYOUT_MAP[group.layout]
             const isSignature = group.layout === 'signature'
@@ -243,9 +268,8 @@ export default function MenuSection() {
                 ref={el => groupRefs.current[group.id] = el}
                 data-group={group.id}
                 className={[
-                  'scroll-mt-[130px]',
-                  gi === 0 ? 'pt-16' : 'pt-[80px]',
-                  gi < MENU_GROUPS.length - 1 ? 'pb-[80px] border-b border-gold/10' : 'pb-0',
+                  gi === 0 ? 'pt-10 sm:pt-16' : 'pt-12 sm:pt-[80px]',
+                  gi < MENU_GROUPS.length - 1 ? 'pb-12 sm:pb-[80px] border-b border-gold/10' : 'pb-0',
                   isSignature ? 'relative' : '',
                 ].join(' ')}
                 style={isSignature ? {
