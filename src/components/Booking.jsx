@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
-import { sendBookingToZalo } from '../utils/zalo'
+import { sendBookingToTelegram } from '../utils/telegram'
 
 function Reveal({ children, delay = 0, className = '' }) {
   const [ref, visible] = useScrollReveal()
@@ -50,7 +50,7 @@ export default function Booking() {
     }
     setStatus('loading')
     try {
-      await sendBookingToZalo({
+      await sendBookingToTelegram({
         name: form.name,
         phone: form.phone,
         date: form.date,
@@ -76,14 +76,14 @@ export default function Booking() {
   return (
     <section
       id="booking"
-      className="py-[120px] relative"
+      className="py-16 sm:py-[120px] relative"
       style={{ background: 'radial-gradient(ellipse at 50% 100%, rgba(61,31,10,0.45) 0%, transparent 55%), #100804' }}
     >
       <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{ backgroundImage: 'repeating-linear-gradient(0deg,rgba(212,168,83,1) 0,rgba(212,168,83,1) 1px,transparent 1px,transparent 60px),repeating-linear-gradient(90deg,rgba(212,168,83,1) 0,rgba(212,168,83,1) 1px,transparent 1px,transparent 60px)' }}
       />
 
-      <div className="max-w-[1200px] mx-auto px-8">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-8">
         <Reveal>
           <p style={{ fontFamily: 'var(--font-body)' }} className="text-[12px] italic text-gold tracking-[4px] uppercase mb-4 text-center">
             Đặt bàn trực tuyến
@@ -95,12 +95,12 @@ export default function Booking() {
           </h2>
         </Reveal>
         <Reveal delay={200}>
-          <p style={{ fontFamily: 'var(--font-body)' }} className="text-[18px] italic text-cream-dim text-center mb-16 max-w-xl mx-auto">
+          <p style={{ fontFamily: 'var(--font-body)' }} className="text-[16px] sm:text-[18px] italic text-cream-dim text-center mb-10 sm:mb-16 max-w-xl mx-auto">
             Đặt bàn trước để đảm bảo chỗ ngồi ưng ý. Chúng tôi xác nhận trong vòng 30 phút.
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-20 items-start">
           <Reveal>
             <ul className="flex flex-col gap-5">
               {CONTACT.map(c => (
@@ -123,7 +123,7 @@ export default function Booking() {
 
           <Reveal delay={200}>
             <div
-              className="relative bg-white/[0.02] border border-gold/20 p-10 md:p-12 rounded-sm"
+              className="relative bg-white/[0.02] border border-gold/20 p-5 sm:p-10 md:p-12 rounded-sm"
             >
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-bg-deep text-gold text-[18px] px-4">◆</div>
 
@@ -134,8 +134,8 @@ export default function Booking() {
                 Điền thông tin, chúng tôi liên hệ xác nhận sớm nhất
               </p>
 
-              <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-4" style={{ fontFamily: 'var(--font-body)' }}>
-                <div className="grid grid-cols-2 gap-4">
+              <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-3 sm:gap-4" style={{ fontFamily: 'var(--font-body)' }}>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   <div>
                     <label className={labelCls}>Họ và tên</label>
                     <input className={inputCls} type="text" placeholder="Nguyễn Văn A"
@@ -148,7 +148,7 @@ export default function Booking() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-3 sm:gap-4">
                   <div>
                     <label className={labelCls}>Ngày đến</label>
                     <input className={inputCls} type="date" min={form._minDate}
@@ -163,7 +163,7 @@ export default function Booking() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-3 sm:gap-4">
                   <div>
                     <label className={labelCls}>Số khách</label>
                     <select className={inputCls} value={form.guests} onChange={e => set('guests', e.target.value)} style={{ fontFamily: 'var(--font-body)' }}>
@@ -222,7 +222,7 @@ export default function Booking() {
       {toast && (
         <div
           style={{ fontFamily: 'var(--font-body)' }}
-          className="fixed bottom-10 left-1/2 -translate-x-1/2 bg-bg-warm border border-gold px-8 py-4 text-cream text-[16px] z-[5000] shadow-xl text-center whitespace-nowrap animate-[fadeInUp_0.3s_ease]"
+          className="fixed bottom-8 left-4 right-4 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 sm:w-auto bg-bg-warm border border-gold px-6 sm:px-8 py-4 text-cream text-[15px] sm:text-[16px] z-[5000] shadow-xl text-center animate-[fadeInUp_0.3s_ease]"
         >
           {toast}
         </div>

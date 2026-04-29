@@ -1,5 +1,5 @@
-export async function sendBookingToZalo(bookingData) {
-  const res = await fetch('/api/send-zalo', {
+export async function sendBookingToTelegram(bookingData) {
+  const res = await fetch('/api/send-telegram', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(bookingData),
