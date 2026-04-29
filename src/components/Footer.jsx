@@ -27,9 +27,9 @@ function scrollTo(href) {
 
 export default function Footer() {
   return (
-    <footer className="border-t border-gold/15 pt-20 pb-10" style={{ background: '#100804' }}>
-      <div className="max-w-[1200px] mx-auto px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 pb-16 border-b border-gold/10 mb-10">
+    <footer className="border-t border-gold/15 pt-14 sm:pt-20 pb-8 sm:pb-10" style={{ background: '#100804' }}>
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 lg:gap-16 pb-12 sm:pb-16 border-b border-gold/10 mb-8 sm:mb-10">
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-3.5 mb-5">
               <img src="/images/BAC-Gardent-logo.jpg" alt="Bắc Garden" className="h-12 w-12 object-contain rounded-sm" />
@@ -86,7 +86,7 @@ export default function Footer() {
             <div style={{ fontFamily: 'var(--font-display)' }} className="text-[16px] font-bold text-cream mb-6">Giờ mở cửa</div>
             <ul className="flex flex-col gap-2.5">
               {hours.map(h => (
-                <li key={h.day} style={{ fontFamily: 'var(--font-body)' }} className="flex justify-between gap-4 text-[14px]">
+                <li key={h.day} style={{ fontFamily: 'var(--font-body)' }} className="flex flex-col sm:flex-row sm:justify-between gap-0.5 sm:gap-4 text-[13px] sm:text-[14px]">
                   <span className="text-cream">{h.day}</span>
                   <span className="text-cream-dim">{h.time}</span>
                 </li>
@@ -95,7 +95,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
           <p style={{ fontFamily: 'var(--font-body)' }} className="text-[13px] text-cream-dark">
             © 2026 <span className="text-gold">Bắc Garden</span>. Hương vị Bắc Bộ truyền thống.
           </p>

@@ -200,9 +200,9 @@ export default function Booking() {
                   disabled={status !== 'idle'}
                   style={{ fontFamily: 'var(--font-display)', background: status === 'done' ? '#2d6a4f' : undefined }}
                   className={[
-                    'mt-2 w-full py-4 bg-gold text-bg-deep text-[15px] font-bold tracking-widest uppercase rounded-sm transition-all duration-250',
-                    'shadow-[0_4px_20px_rgba(212,168,83,0.25)] disabled:opacity-75',
-                    status === 'idle' ? 'hover:bg-gold-lt hover:-translate-y-0.5' : '',
+                    'mt-2 w-full py-4 bg-gold text-bg-deep text-[15px] font-bold tracking-widest uppercase rounded-sm transition-colors duration-250',
+                    'disabled:opacity-75',
+                    status === 'idle' ? 'btn-cta hover:bg-gold-lt hover:-translate-y-0.5' : '',
                   ].join(' ')}
                 >
                   {status === 'loading' ? '⏳ Đang gửi...'
